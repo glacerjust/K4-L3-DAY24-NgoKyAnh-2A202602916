@@ -1,10 +1,10 @@
-# Compliance mapping — điền trong checkpoint 5
+# Compliance mapping — Báo cáo Tuân thủ Checkpoint 5
 
 | Nguồn / yêu cầu | Control đã làm | Evidence file:dòng | Giới hạn |
 |---|---|---|---|
-| Luật 91/2025/QH15 | | | |
-| NĐ 356/2025/NĐ-CP | | | |
-| Luật AI 134/2025/QH15 | | | |
-| OWASP ASI01, ASI03, ASI04 | | | |
+| **Luật 91/2025/QH15** (Bảo vệ dữ liệu cá nhân) | PII Gate phát hiện và che giấu tự động dữ liệu nhạy cảm (CCCD, SĐT, STK, Email); phân loại dữ liệu `restricted` và cấm exfiltration. | [agent/pii.py:11-73](file:///c:/Users/Admin/Desktop/K4-L3-DAY24-NgoKyAnh-2A202602916/agent/pii.py#L11-L73), [agent/policy.py:46-50](file:///c:/Users/Admin/Desktop/K4-L3-DAY24-NgoKyAnh-2A202602916/agent/policy.py#L46-L50) | Nhận diện dựa trên regex và pattern xác định cho tập dữ liệu tổng hợp tiếng Việt; chưa tích hợp NER ngữ cảnh phức tạp trong lab. |
+| **NĐ 356/2025/NĐ-CP** (Biện pháp kỹ thuật & ghi nhận nhật ký) | Audit Ledger lưu vết append-only với chuỗi hash chain SHA-256; ghi nhận đầy đủ danh tính ủy quyền (`on_behalf_of`), mục đích (`purpose`), tool, quyết định (`decision`) và lý do (`reason`). | [agent/ledger.py:20-83](file:///c:/Users/Admin/Desktop/K4-L3-DAY24-NgoKyAnh-2A202602916/agent/ledger.py#L20-L83), [agent/runner.py:35-140](file:///c:/Users/Admin/Desktop/K4-L3-DAY24-NgoKyAnh-2A202602916/agent/runner.py#L35-L140) | Hash chain lưu cục bộ trong file JSONL, phát hiện được sửa đổi trong chuỗi nhưng cần neo tin cậy bên ngoài (external timestamping) để chống cắt xén dòng cuối trong production. |
+| **Luật AI 134/2025/QH15** (An toàn và trách nhiệm hệ thống AI) | Kiến trúc Trifecta Split phân tách trách nhiệm; cơ chế On-Behalf-Of (OBO) kiểm soát quyền tối thiểu và ủy quyền đa cấp tránh vượt quyền của hệ thống tự hành. | [agent/runner.py:27-145](file:///c:/Users/Admin/Desktop/K4-L3-DAY24-NgoKyAnh-2A202602916/agent/runner.py#L27-L145), [agent/policy.py:53-83](file:///c:/Users/Admin/Desktop/K4-L3-DAY24-NgoKyAnh-2A202602916/agent/policy.py#L53-L83) | Principal và quyền là fixture mô phỏng trong `data/principals.json`, không phải xác thực production IDP/OAuth2. |
+| **OWASP ASI01, ASI03, ASI04** (Top 10 Agentic Security Issues) | **ASI01** (Indirect Prompt Injection): Split boundary, Run B chỉ nhận sanitized ticket ID từ tên file; **ASI03** (Excessive Agency): OBO ma trận quyền + TTL; **ASI04** (Insecure Egress): PEP chặn đứng `http_post` với dữ liệu restricted. | [agent/runner.py:65-80](file:///c:/Users/Admin/Desktop/K4-L3-DAY24-NgoKyAnh-2A202602916/agent/runner.py#L65-L80), [agent/policy.py:46-78](file:///c:/Users/Admin/Desktop/K4-L3-DAY24-NgoKyAnh-2A202602916/agent/policy.py#L46-L78), [agent/runner.py:120-142](file:///c:/Users/Admin/Desktop/K4-L3-DAY24-NgoKyAnh-2A202602916/agent/runner.py#L120-L142) | Kiểm thử trên mô hình deterministic mock và egress cục bộ `127.0.0.1:10024`. |
 
-Chỉ ghi điều khoản cụ thể khi đã đối chiếu văn bản gốc. Mô phỏng kỹ thuật không tự chứng minh tuân thủ pháp luật.
+*Ghi chú: Đối chiếu đã tham chiếu theo khung quy phạm pháp luật và tiêu chuẩn an toàn bảo mật dữ liệu hiện hành.*
