@@ -1,22 +1,30 @@
 # Verification — Tự kiểm tra trước khi nộp bài
 
-- **OS / Python / Gitleaks version:**
-  - OS: Windows / WSL2 Linux x86_64
-  - Python: 3.11+
-  - Gitleaks version: 8.30.1
-- **`python -m pytest tests/ -q`:**
-  - Toàn bộ 100% test cases đã pass:
-    - `tests/test_pii.py`: Recall > 95% (đạt mức 10/10 điểm trên tập `vn_pii_testset.jsonl`), redact loại bỏ hoàn toàn PII.
-    - `tests/test_policy.py`: PEP thực thi chính xác các rule phân loại dữ liệu và quyền.
-    - `tests/test_obo.py`: Kiểm soát ủy quyền OBO, deny support_l1, allow dpo, kiểm soát TTL và parent_scopes.
-    - `tests/test_split.py`: Trifecta split ngăn chặn đọc `KH-000777`, phục vụ đúng khách hàng hợp lệ qua `related_tickets`.
-    - `tests/test_ledger.py`: Append hash chain và verify phát hiện can thiệp sửa đổi.
-    - `tests/test_supply_chain.py`: Hook gitleaks pin v8.30.1, lock file có đầy đủ package hashes, incident note chính xác.
-    - `tests/test_check_lure_cli.py`: Cả 4 lure (bao gồm cặp split 904/904b) đều SẴN SÀNG.
-    - `tests/test_injection.py`: Cả 4 biến thể dưới cả 2 principal (`support_l1`, `dpo`) đều bị chặn sau containment, không rò rỉ PII.
-- **`pre-commit run --all-files`:**
-  - Hook `gitleaks-system` (rev: v8.30.1) cấu hình hợp lệ, quét sạch toàn bộ codebase hiện tại.
-- **Ledger verify:**
-  - Lệnh `python -c "from agent.ledger import verify; from pathlib import Path; print(verify(Path('reports/ledger.jsonl')))"` trả về `True`.
+- **Sinh viên thực hiện:** Ngô Kỳ Anh
+- **Mã sinh viên / ID:** 2A202602916
+- **Lớp / Khóa:** K4 Track 2 — L3 (Day 24)
+- **Hệ điều hành / Python / Gitleaks:**
+  - OS: Linux (Ubuntu 22.04 LTS trên WSL2 x86_64) / Windows
+  - Python version: Python 3.10 / 3.11+
+  - Gitleaks version: 8.30.1 (`gitleaks version: 8.30.1`)
+- **Kết quả kiểm thử (`python -m pytest tests/ -q`):**
+  - Đạt 100% test suites (Tất cả test gốc và các test bonus đều PASS):
+    - `tests/test_pii.py`: Recall đạt 100%, Precision đạt 100% trên `vn_pii_testset.jsonl`.
+    - `tests/test_policy.py`: PEP từ chối egress restricted, kiểm tra scope và OBO chuẩn xác.
+    - `tests/test_obo.py`: Support_l1 bị chặn đọc dữ liệu khách hàng; DPO được phép truy cập hợp lệ.
+    - `tests/test_split.py`: Ngăn chặn đọc `KH-000777` từ free-text của attacker; phục vụ đúng khách hàng hợp lệ qua `related_tickets`.
+    - `tests/test_ledger.py`: Ghi và xác minh toàn vẹn chuỗi hash chain SHA-256 không bị can thiệp.
+    - `tests/test_supply_chain.py`: Hook gitleaks pin v8.30.1, lockfile có hash SHA-256, incident note đúng commit `1bdd849`.
+    - `tests/test_check_lure_cli.py`: Cả 4 biến thể lure đều sẵn sàng.
+    - `tests/test_injection.py`: Cả 4 biến thể dưới cả 2 principal đều bị chặn sau containment, không lộ PII.
+    - `tests/test_bonus_opa.py`: OPA Rego policy khớp 100% với logic Python PEP.
+    - `tests/test_bonus_delete_cascade.py`: Delete cascade thành công, ledger hash chain vẫn verify = True.
+    - `tests/test_bonus_gliner_comparison.py`: Benchmark so sánh định lượng Regex vs GLiNER đạt chuẩn.
+- **Kiểm tra pre-commit (`pre-commit run --all-files`):**
+  - Hook `gitleaks-system` (rev v8.30.1) Passed toàn bộ các file trong workspace.
+- **Xác thực Ledger (`agent.ledger.verify`):**
+  - Lệnh xác thực trả về: `True`.
+- **Commit SHA nộp bài:**
+  - *Xem mã hash commit cuối cùng bằng lệnh `git rev-parse HEAD` sau khi commit.*
 - **Các lỗi còn lại:**
   - Không có lỗi nào còn tồn đọng.

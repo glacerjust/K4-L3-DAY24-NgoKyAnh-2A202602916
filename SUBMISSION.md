@@ -1,5 +1,10 @@
 # Nộp bài cá nhân
 
+- **Họ và tên:** Ngô Kỳ Anh
+- **Mã sinh viên:** 2A202602916
+- **Lớp:** K4 Track 2 — L3 (Day 24)
+- **Repo:** K4-L3-DAY24-NgoKyAnh-2A202602916
+
 Mỗi sinh viên làm trong repo riêng, tên theo thông báo của lớp L3. **Fork hoặc clone kèm đầy đủ lịch sử Git** từ repo đề bài; không tạo repo mới bằng cách copy file/ZIP, vì checkpoint 4 cần commit token giả trong lịch sử. **Deadline và nơi nộp do key coach/TA công bố**; repo không tự đặt hạn thay thông báo chính thức. Ghi rõ commit SHA cuối cùng trong phần nộp.
 
 ## File phải có
@@ -8,6 +13,7 @@ Mỗi sinh viên làm trong repo riêng, tên theo thông báo của lớp L3. *
 - Bảo mật dependency: `.pre-commit-config.yaml`, `requirements.lock`, `reports/secrets-incident.md`.
 - Evidence: `injection-corpus.md`, `reports/baseline.md`, `reports/attack-before.log`, `reports/attack-after.log`, `reports/ledger.jsonl`, `reports/compliance-mapping.md`, `reports/dpia-lite.md`.
 - Báo kết quả test và phiên bản Gitleaks trong `reports/verification.md`.
+- Phần mở rộng (Bonus): `agent/policy.rego`, `agent/cascade.py`, `tests/test_bonus_*.py`, các log và báo cáo bonus trong `reports/`.
 
 `reports/attack-*.log` chỉ được chứa dữ liệu synthetic và log localhost. Các file log có trong danh sách nộp dù `.gitignore` mặc định chặn chúng: sau khi kiểm nội dung, dùng `git add -f` cho đúng file evidence. Không nộp `reports/sink.log` hoặc `.venv/`.
 

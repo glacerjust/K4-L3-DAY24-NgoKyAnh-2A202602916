@@ -1,0 +1,13 @@
+=== BONUS: DELETE CASCADE & AUDIT LEDGER INTEGRITY LOG ===
+Date: 2026-10-12
+Regulation: Luật 91/2025/QH15 & GDPR Art 17 (Right to Erasure)
+
+Target Customer ID: KH-999001
+Pre-deletion Ledger State: 1 entries, verify=True
+Actions Executed:
+  1. Removed customer record KH-999001 from customers.json
+  2. Cascaded removal of linked ticket: ticket-888.md
+  3. Appended tombstone entry to ledger with args_hash=6db345a... (no raw PII stored)
+Post-deletion Ledger State: 2 entries, verify=True
+Integrity Check: PASSED (Hash chain is valid and unbroken)
+Result: SUCCESS (Complete erasure with verifiable non-repudiation)

@@ -1,0 +1,26 @@
+=== OPA / REGO POLICY EVALUATION LOG ===
+Date: 2026-10-12
+Policy: agent/policy.rego
+Package: agent.policy
+
+[TEST 1] Input: {"data_classification": "restricted", "egress_enabled": true}
+Evaluation: Deny
+Reason: Restricted data egress is strictly prohibited by policy
+Status: PASS
+
+[TEST 2] Input: {"principal_id": "support_l1", "requested_tool": "read_customer"}
+Evaluation: Deny
+Reason: Principal support_l1 is not permitted to use tool read_customer
+Status: PASS
+
+[TEST 3] Input: {"principal_id": "dpo", "requested_tool": "read_customer", "request_purpose": "support-reply"}
+Evaluation: Allow
+Reason: Policy check passed: read_customer permitted for principal dpo
+Status: PASS
+
+[TEST 4] Input: {"expires_at": "2000-01-01T00:00:00Z"}
+Evaluation: Deny
+Reason: Credentials expired at 2000-01-01T00:00:00Z
+Status: PASS
+
+Parity check between agent/policy.py and agent/policy.rego: 100% MATCH.
