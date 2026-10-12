@@ -4,6 +4,7 @@
 - **Mã sinh viên:** 2A202602916
 - **Lớp:** K4 Track 2 — L3 (Day 24)
 - **Repo:** K4-L3-DAY24-NgoKyAnh-2A202602916
+- **Commit SHA nộp bài:** `3e0c35b7cb0bc3b2ed8259e2bc87eb60cad08a84`
 
 Mỗi sinh viên làm trong repo riêng, tên theo thông báo của lớp L3. **Fork hoặc clone kèm đầy đủ lịch sử Git** từ repo đề bài; không tạo repo mới bằng cách copy file/ZIP, vì checkpoint 4 cần commit token giả trong lịch sử. **Deadline và nơi nộp do key coach/TA công bố**; repo không tự đặt hạn thay thông báo chính thức. Ghi rõ commit SHA cuối cùng trong phần nộp.
 

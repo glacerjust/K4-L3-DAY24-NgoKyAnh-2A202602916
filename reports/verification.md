@@ -25,6 +25,6 @@
 - **Xác thực Ledger (`agent.ledger.verify`):**
   - Lệnh xác thực trả về: `True`.
 - **Commit SHA nộp bài:**
-  - *Xem mã hash commit cuối cùng bằng lệnh `git rev-parse HEAD` sau khi commit.*
+  - `3e0c35b7cb0bc3b2ed8259e2bc87eb60cad08a84`
 - **Các lỗi còn lại:**
   - Không có lỗi nào còn tồn đọng.
